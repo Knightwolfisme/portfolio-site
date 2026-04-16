@@ -1,0 +1,126 @@
+console.log("JS loaded");
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ---------------- HERO ---------------- */
+
+gsap.to(".title", {
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  },
+  y: -200,
+  opacity: 0
+});
+
+gsap.to(".subtitle", {
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  },
+  y: -100,
+  opacity: 0
+});
+
+
+/* ---------------- ABOUT ---------------- */
+
+gsap.from(".about-inner", {
+  scrollTrigger: {
+    trigger: ".about",
+    start: "top center",
+    end: "bottom center",
+    scrub: true
+  },
+  opacity: 0,
+  y: 100
+});
+
+
+/* ---------------- SKILLS ---------------- */
+
+gsap.from(".skill", {
+  scrollTrigger: {
+    trigger: ".skills",
+    start: "top 70%"
+  },
+  opacity: 0,
+  y: 50,
+  stagger: 0.2,
+  duration: 1
+});
+
+
+/* ---------------- PARALLAX ---------------- */
+
+gsap.to(".back", {
+  scrollTrigger: {
+    trigger: ".parallax",
+    start: "top bottom",
+    end: "bottom top",
+    scrub: true
+  },
+  y: -100
+});
+
+gsap.to(".mid", {
+  scrollTrigger: {
+    trigger: ".parallax",
+    start: "top bottom",
+    end: "bottom top",
+    scrub: true
+  },
+  y: -200
+});
+
+gsap.to(".front", {
+  scrollTrigger: {
+    trigger: ".parallax",
+    start: "top bottom",
+    end: "bottom top",
+    scrub: true
+  },
+  y: -300
+});
+
+
+/* ---------------- MOUSE PARALLAX ---------------- */
+
+document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+  gsap.to(".back", { x: x * 0.2, y: y * 0.2, duration: 1, overwrite: "auto" });
+  gsap.to(".mid", { x: x * 0.4, y: y * 0.4, duration: 1, overwrite: "auto" });
+  gsap.to(".front", { x: x * 0.6, y: y * 0.6, duration: 1, overwrite: "auto" });
+});
+
+
+/* ---------------- HORIZONTAL PROJECTS ---------------- */
+
+window.addEventListener("load", () => {
+  const container = document.querySelector(".projects-container");
+
+  // safety check
+  if (!container) {
+    console.error("Projects container not found");
+    return;
+  }
+
+  gsap.to(container, {
+    x: () => -(container.scrollWidth - window.innerWidth),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".projects",
+      start: "top top",
+      end: () => "+=" + (container.scrollWidth - window.innerWidth),
+      scrub: true,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+});
