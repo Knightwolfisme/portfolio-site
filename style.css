@@ -1,83 +1,171 @@
-/* ---------------- PROJECTS ---------------- */
-
-.projects {
-  height: 100vh;  /* 🔥 IMPORTANT: no huge vh hacks */
-  color: white;
-  position: relative;
-  overflow: hidden;
-
-  background:
-    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
-    url("images/projects.jpg");
-
-  background-size: cover;
-  background-position: center;
-}
-
-.projects-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  padding: 0 60px;
-
-  width: max-content;  /* 🔥 CRITICAL */
-}
-
-.project {
-  min-width: 320px;
-  max-width: 420px;
-  height: 50vh;
-
-  background: linear-gradient(120deg, #0a0a0a, #111, #0a0a0a);
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 12px;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-  font-size: 1.6rem;
-  color: #f5f5f5;
-
-  position: relative;
-  overflow: hidden;
-
-  transition: transform 0.4s ease, border 0.4s ease;
-}
-
-/* IMAGE */
-.project img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  opacity: 0.35;
-}
-
-/* TEXT */
-.project-info {
-  position: relative;
-  z-index: 2;
-  text-align: left;
-  padding: 20px;
-}
-
-/* DARK OVERLAY */
-.project::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-}
-
-/* HOVER */
-.project:hover {
-  transform: scale(1.05);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-}
+diff --git a/style.css b/style.css
+index ff86aa55e02f7d11d019ea949ab129601c81616a..2a1974573741fb52d80242db6b98b14049dc909d 100644
+--- a/style.css
++++ b/style.css
+@@ -1,83 +1,83 @@
+-/* ---------------- PROJECTS ---------------- */
+-
+-.projects {
+-  height: 100vh;  /* 🔥 IMPORTANT: no huge vh hacks */
+-  color: white;
+-  position: relative;
+-  overflow: hidden;
+-
+-  background:
+-    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+-    url("images/projects.jpg");
+-
+-  background-size: cover;
+-  background-position: center;
+-}
+-
+-.projects-container {
+-  position: absolute;
+-  top: 0;
+-  left: 0;
+-  height: 100%;
+-  display: flex;
+-  align-items: center;
+-  gap: 60px;
+-  padding: 0 60px;
+-
+-  width: max-content;  /* 🔥 CRITICAL */
+-}
+-
+-.project {
+-  min-width: 320px;
+-  max-width: 420px;
+-  height: 50vh;
+-
+-  background: linear-gradient(120deg, #0a0a0a, #111, #0a0a0a);
+-  border: 1px solid rgba(255, 215, 0, 0.15);
+-  border-radius: 12px;
+-
+-  display: flex;
+-  justify-content: center;
+-  align-items: flex-end;
+-
+-  font-size: 1.6rem;
+-  color: #f5f5f5;
+-
+-  position: relative;
+-  overflow: hidden;
+-
+-  transition: transform 0.4s ease, border 0.4s ease;
+-}
+-
+-/* IMAGE */
+-.project img {
+-  position: absolute;
+-  width: 100%;
+-  height: 100%;
+-  object-fit: cover;
+-  top: 0;
+-  left: 0;
+-  opacity: 0.35;
+-}
+-
+-/* TEXT */
+-.project-info {
+-  position: relative;
+-  z-index: 2;
+-  text-align: left;
+-  padding: 20px;
+-}
+-
+-/* DARK OVERLAY */
+-.project::after {
+-  content: "";
+-  position: absolute;
+-  inset: 0;
+-  background: rgba(0,0,0,0.5);
+-}
+-
+-/* HOVER */
+-.project:hover {
+-  transform: scale(1.05);
+-  border: 1px solid rgba(255, 215, 0, 0.4);
+-}
++/* ---------------- PROJECTS ---------------- */
++
++.projects {
++  height: 100vh;  /* 🔥 IMPORTANT: no huge vh hacks */
++  color: white;
++  position: relative;
++  overflow: hidden;
++
++  background:
++    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
++    url("images/hexmesh.png");
++
++  background-size: cover;
++  background-position: center;
++}
++
++.projects-container {
++  position: absolute;
++  top: 0;
++  left: 0;
++  height: 100%;
++  display: flex;
++  align-items: center;
++  gap: 60px;
++  padding: 0 60px;
++
++  width: max-content;  /* 🔥 CRITICAL */
++}
++
++.project {
++  min-width: 320px;
++  max-width: 420px;
++  height: 50vh;
++
++  background: linear-gradient(120deg, #0a0a0a, #111, #0a0a0a);
++  border: 1px solid rgba(255, 215, 0, 0.15);
++  border-radius: 12px;
++
++  display: flex;
++  justify-content: center;
++  align-items: flex-end;
++
++  font-size: 1.6rem;
++  color: #f5f5f5;
++
++  position: relative;
++  overflow: hidden;
++
++  transition: transform 0.4s ease, border 0.4s ease;
++}
++
++/* IMAGE */
++.project img {
++  position: absolute;
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++  top: 0;
++  left: 0;
++  opacity: 0.35;
++}
++
++/* TEXT */
++.project-info {
++  position: relative;
++  z-index: 2;
++  text-align: left;
++  padding: 20px;
++}
++
++/* DARK OVERLAY */
++.project::after {
++  content: "";
++  position: absolute;
++  inset: 0;
++  background: rgba(0,0,0,0.5);
++}
++
++/* HOVER */
++.project:hover {
++  transform: scale(1.05);
++  border: 1px solid rgba(255, 215, 0, 0.4);
++}
