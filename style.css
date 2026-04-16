@@ -108,25 +108,30 @@ section {
   filter: brightness(0.8);
 }
 
-/* BACK */
 .back {
   background: url("images/back.jpg") center/cover no-repeat;
   z-index: 1;
+
+  transform: scale(1.05);
 }
 
-/* MID */
 .mid {
   background: url("images/hexmesh.png") center/cover no-repeat;
   z-index: 2;
-  opacity: 0.25;
-  filter: blur(1px) brightness(0.6);
+  opacity: 0.15;
+  filter: blur(3px) brightness(0.5);
+
+
+  transform: scale(1.1);
+  filter: blur(2px) brightness(0.5);
 }
 
-/* FRONT */
 .front {
   background: url("images/front.jpg") center/cover no-repeat;
   z-index: 4;
   opacity: 0.6;
+  filter: none;
+  transform: scale(1.02);
 }
 
 /* TEXT */
@@ -195,6 +200,8 @@ section {
   align-items: center;
   gap: 60px;
   padding: 0 60px;
+
+  width: max-content;
 }
 
 .project {
