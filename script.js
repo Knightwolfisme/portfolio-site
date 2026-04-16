@@ -114,18 +114,17 @@ window.addEventListener("load", () => {
 
   if (!container) return;
 
-  const scrollAmount = container.scrollWidth - window.innerWidth;
+const scrollAmount = container.scrollWidth - window.innerWidth;
 
-  gsap.to(container, {
-    x: -scrollAmount,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".projects",
-      start: "top top",
-      end: "+=" + scrollAmount,
-      scrub: true,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
+gsap.to(container, {
+  x: () => -scrollAmount,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".projects",
+    start: "top top",
+    end: () => "+=" + scrollAmount,
+    scrub: true,
+    pin: true,
+    anticipatePin: 1
+  }
 });
