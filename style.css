@@ -188,13 +188,9 @@ section {
 }
 
 .projects-container {
-  position: sticky;
-  top: 0;
-  height: 100vh;
   display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 0 40px;
+  height: 100vh;
+  width: max-content;
 }
 
 .project {
