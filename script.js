@@ -109,19 +109,13 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* ---------------- HORIZONTAL PROJECTS ---------------- */
-
 window.addEventListener("load", () => {
   const container = document.querySelector(".projects-container");
 
-  // safety check
-  if (!container) {
-    console.error("Projects container not found");
-    return;
-  }
+  if (!container) return;
 
-const scrollAmount = container.scrollWidth - window.innerWidth;
+  const scrollAmount = container.scrollWidth - window.innerWidth;
 
-if (scrollAmount > 0) {
   gsap.to(container, {
     x: -scrollAmount,
     ease: "none",
@@ -134,4 +128,4 @@ if (scrollAmount > 0) {
       anticipatePin: 1
     }
   });
-}
+});
