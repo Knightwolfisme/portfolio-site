@@ -1,126 +1,272 @@
-console.log("JS loaded");
+/* ---------------- BASE ---------------- */
 
-gsap.registerPlugin(ScrollTrigger);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* SUBTLE NOISE (clean version) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* GRID OVERLAY (engineering vibe) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------------- SECTIONS ---------------- */
+
+section {
+  height: 100vh;
+  padding: 60px;
+  box-sizing: border-box;
+}
 
 /* ---------------- HERO ---------------- */
 
-gsap.to(".title", {
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "top top",
-    end: "bottom top",
-    scrub: true
-  },
-  y: -200,
-  opacity: 0
-});
+.hero {
+  height: 200vh;
+  position: relative;
+  color: white;
 
-gsap.to(".subtitle", {
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "top top",
-    end: "bottom top",
-    scrub: true
-  },
-  y: -100,
-  opacity: 0
-});
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+    url("images/hero.jpg");
 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
-/* ---------------- ABOUT ---------------- */
+.hero-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
 
-gsap.from(".about-inner", {
-  scrollTrigger: {
-    trigger: ".about",
-    start: "top center",
-    end: "bottom center",
-    scrub: true
-  },
-  opacity: 0,
-  y: 100
-});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.title {
+  font-size: 4rem;
+  margin: 0;
+}
 
-/* ---------------- SKILLS ---------------- */
-
-gsap.from(".skill", {
-  scrollTrigger: {
-    trigger: ".skills",
-    start: "top 70%"
-  },
-  opacity: 0,
-  y: 50,
-  stagger: 0.2,
-  duration: 1
-});
-
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
 
 /* ---------------- PARALLAX ---------------- */
 
-gsap.to(".back", {
-  scrollTrigger: {
-    trigger: ".parallax",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: true
-  },
-  y: -100
-});
+.parallax {
+  position: relative;
+  height: 200vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #0d0d0d, #000);
+}
 
-gsap.to(".mid", {
-  scrollTrigger: {
-    trigger: ".parallax",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: true
-  },
-  y: -200
-});
+/* ONE clean overlay (not two) */
+.parallax::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 3;
+}
 
-gsap.to(".front", {
-  scrollTrigger: {
-    trigger: ".parallax",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: true
-  },
-  y: -300
-});
+/* LAYERS */
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  top: 0;
+  left: 0;
 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-/* ---------------- MOUSE PARALLAX ---------------- */
+  filter: brightness(0.8);
+}
 
-document.addEventListener("mousemove", (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+/* BACK */
+.back {
+  background: url("images/back.jpg") center/cover no-repeat;
+  z-index: 1;
+}
 
-  gsap.to(".back", { x: x * 0.2, y: y * 0.2, duration: 1, overwrite: "auto" });
-  gsap.to(".mid", { x: x * 0.4, y: y * 0.4, duration: 1, overwrite: "auto" });
-  gsap.to(".front", { x: x * 0.6, y: y * 0.6, duration: 1, overwrite: "auto" });
-});
+/* MID */
+.mid {
+  background: url("images/hexmesh.png") center/cover no-repeat;
+  z-index: 2;
+  opacity: 0.25;
+  filter: blur(1px) brightness(0.6);
+}
 
+/* FRONT */
+.front {
+  background: url("images/front.jpg") center/cover no-repeat;
+  z-index: 4;
+  opacity: 0.6;
+}
 
-/* ---------------- HORIZONTAL PROJECTS ---------------- */
+/* TEXT */
+.parallax-text {
+  position: sticky;
+  top: 40%;
+  text-align: center;
+  color: #f5f5f5;
+  font-size: 2.5rem;
+  z-index: 5;
+}
 
-window.addEventListener("load", () => {
-  const container = document.querySelector(".projects-container");
+/* ---------------- ABOUT ---------------- */
 
-  // safety check
-  if (!container) {
-    console.error("Projects container not found");
-    return;
-  }
+.about {
+  height: 150vh;
 
-  gsap.to(container, {
-    x: () => -(container.scrollWidth - window.innerWidth),
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".projects",
-      start: "top top",
-      end: () => "+=" + (container.scrollWidth - window.innerWidth),
-      scrub: true,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
-});
+  background:
+    linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.97)),
+    url("images/about.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.about-inner {
+  position: sticky;
+  top: 30%;
+  text-align: center;
+}
+
+/* ---------------- SKILLS ---------------- */
+
+.skills {
+  background: #e0e0e0;
+}
+
+.skill {
+  margin: 10px 0;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+}
+
+/* ---------------- PROJECTS ---------------- */
+
+.projects {
+  height: 300vh;
+  color: white;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+    url("images/projects.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.projects-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 0 40px;
+}
+
+.project {
+  min-width: 100vw;
+  height: 60vh;
+  padding: 40px;
+  box-sizing: border-box;
+
+  background: linear-gradient(120deg, #0a0a0a, #111, #0a0a0a);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  font-size: 2rem;
+  color: #f5f5f5;
+
+  position: relative;
+  overflow: hidden;
+
+  transition: transform 0.4s ease, border 0.4s ease;
+}
+
+.project img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  opacity: 0.35;
+}
+
+.project-info {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  padding: 20px;
+}
+
+.project::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 215, 0, 0.15),
+    transparent
+  );
+  transform: rotate(25deg);
+  top: -50%;
+  left: -50%;
+}
+
+.project::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.project:hover {
+  transform: scale(1.03);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+/* ---------------- CONTACT ---------------- */
+
+.contact {
+  background: #c0c0c0;
+}
